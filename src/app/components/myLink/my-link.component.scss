@@ -1,0 +1,64 @@
+@import '../styles/_styles.scss';
+
+.c-container-fluid-bg {
+    background-color: #f4f4f4;
+}
+
+.c-my-link {
+    height: 85vh;
+}
+
+.c-card-container {
+    height: 100%;
+}
+
+.c-card-container-half {
+    height: 49.5%;
+}
+
+.c-card-bg {
+    box-shadow: 0 0 11px #3c3c3c27;
+    border: none !important;
+}
+
+.list-inline-item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.accordion-body {
+    padding: 0 !important;
+}
+
+.list-group-item a, .icon-link a, .list-inline-item a {
+    text-decoration: none;
+    color: black;
+    transition: all 0.2s;
+
+    &:hover {
+        color: #0C63E4;
+    }
+}
+
+.accordion-button {
+    background: none;
+}
+
+.c-link-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-right: 4px solid black;
+
+    a {
+        font-size: 0.85em;
+    }
+}
+
+.c-edit-btn {
+    font-size: 0.85em;
+    color: black !important;
+
+    &:hover {
+        color: #0C63E4 !important;
+    }
+}
