@@ -18,11 +18,11 @@ export class MyLinkService {
     }
 
     public addLink(link: MyLink): Observable<MyLink> {
-        return this.http.post<MyLink>(`${this.apiServerUrl}/add-my-link`, link);
+        return this.http.post<MyLink>(`${this.apiServerUrl}/my-link`, link);
     }
 
     public updateLink(id: number, link: MyLink): Observable<MyLink> {
-        return this.http.put<MyLink>(`${this.apiServerUrl}/update-my-link/${id}`, link);
+        return this.http.put<MyLink>(`${this.apiServerUrl}/my-link/${id}`, link);
     }
 
     public getCategories(): Observable<MyLinkCategory[]> {
@@ -30,7 +30,7 @@ export class MyLinkService {
     }
 
     public deleteLink(linkId: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiServerUrl}/delete-my-link/${linkId}`);
+        return this.http.delete<void>(`${this.apiServerUrl}/my-link/${linkId}`);
     }
 
 }

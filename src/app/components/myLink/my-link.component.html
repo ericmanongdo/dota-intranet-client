@@ -1,164 +1,40 @@
-<div class="container-fluid p-4">
-    <main>
-        <section class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-            <h2 class="fw-bold">Airports Portal</h2>
-            <div class="user-greeting">
-                <p class="fw-bold mb-0">Welcome, Eric Manongdo</p>
-                <p>Portal opened on 11/25/2024 11:00 AM</p>
-            </div>
-        </section>
-        <section class="row c-my-link">
-            <div class="col-lg-3">
-                <div class="row g-2 c-card-container">
-                    <div class="card p-3 c-card-bg">
-                        <div class="d-flex justify-content-between flex-wrap border-bottom">
-                            <h5 class="card-title fw-bold pb-3">Global Links</h5>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item small"><a href="#">Add</a></li>
-                                <li class="list-inline-item small"><a href="#">Edit</a></li>
-                                <li class="list-inline-item small icon-link">
-                                    <a href="#">
-                                        <fa-icon [icon]="faRotateRight"></fa-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed fw-bold" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                            aria-expanded="false" aria-controls="flush-collapseOne">
-                                        DOT Relief Program
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                     aria-labelledby="flush-headingOne">
-                                    <div class="accordion-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><a href="#">· An item</a></li>
-                                            <li class="list-group-item blue"><a href="#">· A second item</a></li>
-                                            <li class="list-group-item green"><a href="#">· A third item</a></li>
-                                            <li class="list-group-item"><a href="#">· A fourth item</a></li>
-                                            <li class="list-group-item yellow"><a href="#">· And a fifth one</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<div class="card p-3 c-card-bg">
+    <div class="d-flex justify-content-between flex-wrap border-bottom">
+        <h5 class="card-title fw-bold pb-3">My Links</h5>
+        <ul class="list-inline mb-0">
+            <li class="list-inline-item small">
+                <a href="#" (click)="openModal(myLinkModal)">Add</a>
+            </li>
+        </ul>
+    </div>
+    <div class="accordion accordion-flush" id="accordionFlushMyLinks">
+        <div *ngFor="let group of groupedLinks; let i = index" class="accordion-item">
+            <h2 class="accordion-header" [id]="'flush-heading-' + i">
+                <button class="accordion-button collapsed fw-bold" type="button"
+                        data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse-' + i"
+                        aria-expanded="false" [attr.aria-controls]="'flush-collapse-' + i">
+                    {{ group.categoryName }}
+                </button>
+            </h2>
+            <div [id]="'flush-collapse-' + i" class="accordion-collapse collapse"
+                 [attr.aria-labelledby]="'flush-heading-' + i">
+                <div class="accordion-body">
+                    <ul class="list-group list-group-flush">
+                        <li *ngFor="let link of group.links"
+                            class="list-group-item c-link-flex {{ link.backgroundColor }}">
+                            <a href="{{ link.url }}">· {{ link.title }}</a>
+                            <button class="btn btn-sm btn-link text-primary float-end c-edit-btn"
+                                    (click)="openModal(myLinkModal, link)">
+                                <fa-icon [icon]="faPencilSquare"></fa-icon>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="row g-2 c-card-container-half">
-                    <div class="card p-3 c-card-bg">
-                        <div class="d-flex justify-content-between flex-wrap">
-                            <h5 class="card-title fw-bold pb-3">Today's Headlines</h5>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item small"><a href="#">Contact AIR-I</a></li>
-                                <li class="list-inline-item small"><a href="#">Add Headline</a></li>
-                                <li class="list-inline-item small"><a href="#">View All</a></li>
-                                <li class="list-inline-item small icon-link">
-                                    <a href="#">
-                                        <fa-icon [icon]="faRotateRight"></fa-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body d-flex align-items-center justify-content-between icon-link">
-                                <p class="card-title mb-0">HIP Unavailable 11/30/24 12:01 AM to 12/01/24 12:01 AM
-                                </p>
-                                <a href="#">
-                                    <fa-icon [icon]="faCircleChevronRight"></fa-icon>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body d-flex align-items-center justify-content-between icon-link">
-                                <p class="card-title mb-0">Okay to log onto AIRFMIS and resume operations</p>
-                                <a href="#">
-                                    <fa-icon [icon]="faCircleChevronRight"></fa-icon>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body d-flex align-items-center justify-content-between icon-link">
-                                <p class="card-title mb-0">Airports Kama'aina Cafe November 25-29</p>
-                                <a href="#">
-                                    <fa-icon [icon]="faCircleChevronRight"></fa-icon>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-2 mt-2 c-card-container-half">
-                    <div class="card p-3 c-card-bg">
-                        <div class="d-flex justify-content-between flex-wrap">
-                            <h5 class="card-title fw-bold pb-3">Today's News</h5>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item small"><a href="#">Add News Item</a></li>
-                                <li class="list-inline-item small"><a href="#">Add Announcement</a></li>
-                                <li class="list-inline-item small"><a href="#">View All</a></li>
-                                <li class="list-inline-item small icon-link">
-                                    <a href="#">
-                                        <fa-icon [icon]="faRotateRight"></fa-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="card mb-2">
-                            <div class="card-body d-flex align-items-center justify-content-between icon-link">
-                                <p class="card-title mb-0">Airports Kama'aina Cafe November 25-29</p>
-                                <a href="#">
-                                    <fa-icon [icon]="faCircleChevronRight"></fa-icon>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="row g-2 c-card-container">
-                    <div class="card p-3 c-card-bg">
-                        <div class="d-flex justify-content-between flex-wrap border-bottom">
-                            <h5 class="card-title fw-bold pb-3">My Links</h5>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item small">
-                                    <a href="#" (click)="openModal(myLinkModal)">Add</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accordion accordion-flush" id="accordionFlushMyLinks">
-                            <div *ngFor="let group of groupedLinks; let i = index" class="accordion-item">
-                                <h2 class="accordion-header" [id]="'flush-heading-' + i">
-                                    <button class="accordion-button collapsed fw-bold" type="button"
-                                            data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse-' + i"
-                                            aria-expanded="false" [attr.aria-controls]="'flush-collapse-' + i">
-                                        {{ group.categoryName }}
-                                    </button>
-                                </h2>
-                                <div [id]="'flush-collapse-' + i" class="accordion-collapse collapse"
-                                     [attr.aria-labelledby]="'flush-heading-' + i">
-                                    <div class="accordion-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li *ngFor="let link of group.links" class="list-group-item c-link-flex {{ link.backgroundColor }}">
-                                                <a href="{{ link.url }}">· {{ link.title }}</a>
-                                                <button class="btn btn-sm btn-link text-primary float-end c-edit-btn" (click)="openModal(myLinkModal, link)">
-                                                    <fa-icon [icon]="faPencilSquare"></fa-icon>
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </div>
 </div>
+
 
 <!-- My Link Modal -->
 <ng-template #myLinkModal let-modal>
@@ -192,7 +68,8 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li *ngFor="let category of categories">
-                        <a class="dropdown-item" href="#" (click)="selectCategory(category.id)">{{ category.categoryName }}</a>
+                        <a class="dropdown-item" href="#"
+                           (click)="selectCategory(category.id)">{{ category.categoryName }}</a>
                     </li>
                 </ul>
             </div>
@@ -202,15 +79,18 @@
             </div>
             <div class="form-floating mb-3">
                 <select class="form-select" id="textColor" [(ngModel)]="currentLink.textColor" name="textColor">
-                    <option *ngFor="let color of textColors" [value]="color.value" [style.backgroundColor]="color.value" [style.color]="color.contrastColor">
+                    <option *ngFor="let color of textColors" [value]="color.value" [style.backgroundColor]="color.value"
+                            [style.color]="color.contrastColor">
                         {{ color.name }}
                     </option>
                 </select>
                 <label for="textColor">Text Color</label>
             </div>
             <div class="form-floating mb-3">
-                <select class="form-select" id="backgroundColor" [(ngModel)]="currentLink.backgroundColor" name="backgroundColor">
-                    <option *ngFor="let color of backgroundColors" [value]="color.value" [style.backgroundColor]="color.value" [style.color]="color.contrastColor">
+                <select class="form-select" id="backgroundColor" [(ngModel)]="currentLink.backgroundColor"
+                        name="backgroundColor">
+                    <option *ngFor="let color of backgroundColors" [value]="color.value"
+                            [style.backgroundColor]="color.value" [style.color]="color.contrastColor">
                         {{ color.name }}
                     </option>
                 </select>
@@ -224,7 +104,8 @@
                 Delete
             </button>
             <div [ngClass]="{ 'ms-auto': !currentLink.id }">
-                <button type="button" class="btn btn-secondary me-1" (click)="modal.dismiss('Cancel click')">Cancel</button>
+                <button type="button" class="btn btn-secondary me-1" (click)="modal.dismiss('Cancel click')">Cancel
+                </button>
                 <button type="button" class="btn btn-primary" (click)="saveLink(modal)">
                     {{ currentLink.id ? 'Save' : 'Add' }}
                 </button>
