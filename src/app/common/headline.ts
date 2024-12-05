@@ -1,5 +1,5 @@
 export interface Headline {
-    id: number;
+    id?: number;
     subject: string;
     postedBy: string;
     body: string;
