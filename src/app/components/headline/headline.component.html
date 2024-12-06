@@ -35,37 +35,37 @@
 <!-- Headline List Modal -->
 <ng-template #listModal let-modal>
     <div class="modal-header">
-        <h5 class="modal-title">{{ selectedHeadline?.subject }}</h5>
+        <h5 class="modal-title">{{ selectedHeadline.subject }}</h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <div>
             <p class="c-label">Posted By:</p>
-            <p>{{ selectedHeadline?.postedBy }}</p>
+            <p>{{ selectedHeadline.postedBy }}</p>
         </div>
         <div>
             <p class="c-label">Body:</p>
-            <p>{{ selectedHeadline?.body }}</p>
+            <p>{{ selectedHeadline.body }}</p>
         </div>
         <div>
             <p class="c-label">Active Date:</p>
-            <p>{{ selectedHeadline?.postActiveDate }}</p>
+            <p>{{ selectedHeadline.postActiveDate }}</p>
         </div>
         <div>
             <p class="c-label">Active Date:</p>
-            <p>{{ selectedHeadline?.postRemoveDate }}</p>
+            <p>{{ selectedHeadline.postRemoveDate }}</p>
         </div>
         <div>
             <p class="c-label">Active Date:</p>
-            <p>{{ selectedHeadline?.postDeleteDate }}</p>
+            <p>{{ selectedHeadline.postDeleteDate }}</p>
         </div>
         <div>
             <p class="c-label">Shared:</p>
-            <p>{{ selectedHeadline?.sharedUsers?.join(', ') }}</p>
+            <p>{{ selectedHeadline.sharedUsers.join(', ') }}</p>
         </div>
         <div>
             <p class="c-label">Collaborators:</p>
-            <p>{{ selectedHeadline?.collaborators?.join(', ') }}</p>
+            <p>{{ selectedHeadline.collaborators.join(', ') }}</p>
         </div>
     </div>
     <div class="modal-footer">
@@ -207,7 +207,7 @@
         <div class="d-flex justify-content-between w-100">
             <!-- Delete Button -->
             <button
-                *ngIf="selectedHeadline?.id"
+                *ngIf="selectedHeadline.id"
                 type="button"
                 class="btn btn-outline-danger"
                 (click)="deleteHeadline(selectedHeadline.id!, modal)">
@@ -215,10 +215,10 @@
             </button>
 
             <!-- Cancel and Save Buttons -->
-            <div [ngClass]="{ 'ms-auto': !selectedHeadline?.id }">
+            <div [ngClass]="{ 'ms-auto': !selectedHeadline.id }">
                 <button type="button" class="btn btn-secondary me-1" (click)="modal.dismiss('Cancel click')">Cancel</button>
                 <button type="button" class="btn btn-primary" (click)="saveHeadline(modal)">
-                    {{ selectedHeadline?.id ? 'Update' : 'Add' }}
+                    {{ selectedHeadline.id ? 'Update' : 'Add' }}
                 </button>
             </div>
         </div>
