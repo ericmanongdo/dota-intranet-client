@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-between flex-wrap border-bottom">
+    <h5 class="card-title fw-bold pb-3">Global Links</h5>
+    <ul class="list-inline mb-0">
+        <li class="list-inline-item small" (click)="openModal(globalLinkModal)"><a href="#">Add</a></li>
+        <li class="list-inline-item small icon-link">
+            <a href="#">
+                <fa-icon [icon]="faRotateRight"></fa-icon>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+    <div *ngFor="let group of groupedGlobalLinks; let i = index" class="accordion-item">
+        <h2 class="accordion-header" [id]="'flush-head-' + i">
+            <button class="accordion-button collapsed fw-bold" type="button"
+                    data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapse-gl-' + i"
+                    aria-expanded="false" [attr.aria-controls]="'flush-collapse-' + i">
+                {{ group.categoryName }}
+            </button>
+        </h2>
+        <div [id]="'flush-collapse-gl-' + i" class="accordion-collapse collapse"
+             [attr.aria-labelledby]="'flush-head-' + i">
+            <div class="accordion-body">
+                <ul class="list-group list-group-flush">
+                    <li *ngFor="let link of group.links"
+                        class="list-group-item c-link-flex {{ link.backgroundColor }}">
+                        <a href="{{ link.url }}">· {{ link.title }}</a>
+                        <button class="btn btn-sm btn-link text-primary float-end c-edit-btn" (click)="openModal(globalLinkModal, link)">
+                            <fa-icon [icon]="faPencilSquare"></fa-icon>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- My Link Modal -->
+<ng-template #globalLinkModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">{{ currentLink.id ? 'Edit Link' : 'Add Link' }}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="title" [(ngModel)]="currentLink.title" name="title"
+                       required>
+                <label for="title">Title</label>
+            </div>
+            <div class="dropdown mb-3">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    {{ getCategoryName(currentLink.categoryId) || 'Choose a Category' }}
+                </button>
+                <ul class="dropdown-menu">
+                    <li *ngFor="let category of categories">
+                        <a class="dropdown-item" href="#"
+                           (click)="selectCategory(category.id)">{{ category.categoryName }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="url" [(ngModel)]="currentLink.url" name="url" required>
+                <label for="url">URL</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="textColor" [(ngModel)]="currentLink.textColor" name="textColor">
+                    <option *ngFor="let color of textColors" [value]="color.value" [style.backgroundColor]="color.value"
+                            [style.color]="color.contrastColor">
+                        {{ color.name }}
+                    </option>
+                </select>
+                <label for="textColor">Text Color</label>
+            </div>
+            <div class="form-floating mb-3">
+                <select class="form-select" id="backgroundColor" [(ngModel)]="currentLink.backgroundColor"
+                        name="backgroundColor">
+                    <option *ngFor="let color of backgroundColors" [value]="color.value"
+                            [style.backgroundColor]="color.value" [style.color]="color.contrastColor">
+                        {{ color.name }}
+                    </option>
+                </select>
+                <label for="backgroundColor">Background Color</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <div class="d-flex justify-content-between w-100">
+            <button *ngIf="currentLink.id" type="button" class="btn btn-outline-danger" (click)="deleteLink(modal)">
+                Delete
+            </button>
+            <div [ngClass]="{ 'ms-auto': !currentLink.id }">
+                <button type="button" class="btn btn-secondary me-1" (click)="modal.dismiss('Cancel click')">Cancel
+                </button>
+                <button type="button" class="btn btn-primary" (click)="saveLink(modal)">
+                    {{ currentLink.id ? 'Save' : 'Add' }}
+                </button>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -9,6 +9,7 @@ import {FormsModule} from '@angular/forms';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../../service/user.service';
 import {User} from '../../common/user';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -19,7 +20,8 @@ import {User} from '../../common/user';
         SlicePipe,
         FormsModule,
         NgIf,
-        NgClass
+        NgClass,
+        RouterLink
     ],
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.scss', '../headline/headline.component.scss', '../myLink/my-link.component.scss']

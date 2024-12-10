@@ -1,5 +1,3 @@
-import {User} from './user';
-
 export interface News {
     id?: number;
     author: string;

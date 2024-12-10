@@ -1,18 +1,15 @@
-body, html, app-root {
-    height: 100%;
-    margin: 0;
-}
-
-.router-outlet-container {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .c-center-nav a {
     margin-left: 10px;
     margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+    transition: 0.2s ease-in-out;
+    &:hover {
+        color: #0C63E4;
+    }
+}
+
+.c-home-link {
     text-decoration: none;
     color: #000;
     transition: 0.2s ease-in-out;

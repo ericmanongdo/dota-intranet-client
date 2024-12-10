@@ -1,74 +1,52 @@
-<div class="container-fluid p-4">
-    <main>
-        <section class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-            <h2 class="fw-bold">Airports Portal</h2>
-            <div class="user-greeting">
-                <p class="fw-bold mb-0">Welcome, Eric Manongdo</p>
-                <p>Portal opened on 11/25/2024 11:00 AM</p>
-            </div>
-        </section>
-        <section class="row c-my-link">
-            <div class="col-lg-3">
-                <div class="row g-2 c-card-container">
-                    <div class="card p-3 c-card-bg">
-                        <div class="d-flex justify-content-between flex-wrap border-bottom">
-                            <h5 class="card-title fw-bold pb-3">Global Links</h5>
-                            <ul class="list-inline mb-0">
-                                <li class="list-inline-item small"><a href="#">Add</a></li>
-                                <li class="list-inline-item small"><a href="#">Edit</a></li>
-                                <li class="list-inline-item small icon-link">
-                                    <a href="#">
-                                        <fa-icon [icon]="faRotateRight"></fa-icon>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed fw-bold" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                            aria-expanded="false" aria-controls="flush-collapseOne">
-                                        DOT Relief Program
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                     aria-labelledby="flush-headingOne">
-                                    <div class="accordion-body">
-                                        <ul class="list-group list-group-flush">
-                                            <li class="list-group-item"><a href="#">· An item</a></li>
-                                            <li class="list-group-item blue"><a href="#">· A second item</a></li>
-                                            <li class="list-group-item green"><a href="#">· A third item</a></li>
-                                            <li class="list-group-item"><a href="#">· A fourth item</a></li>
-                                            <li class="list-group-item yellow"><a href="#">· And a fifth one</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="row g-2 c-card-container-half">
-                    <div class="card p-3 c-card-bg">
-                        <app-headline></app-headline>
-                    </div>
-                </div>
-                <div class="row g-2 mt-2 c-card-container-half">
-                    <div class="card p-3 c-card-bg">
-                        <app-news></app-news>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="row g-2 c-card-container">
-                    <app-my-link></app-my-link>
-                </div>
-            </div>
-        </section>
-    </main>
+<div *ngIf="isFullPageRoute(); else mainLayout">
+    <router-outlet></router-outlet>
 </div>
+<ng-template #mainLayout>
+    <div class="container-fluid p-4">
+        <main>
+            <section class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+                <h2 class="fw-bold">Airports Portal</h2>
+                <div class="d-flex c-center-nav">
+                    <a routerLink="/file-sharing">File Sharing</a>
+                    <a routerLink="#">Headlines</a>
+                    <a routerLink="#">News</a>
+                    <a routerLink="#">Administration</a>
+                    <a routerLink="#">Profile</a>
+                </div>
+                <div class="user-greeting">
+                    <p class="fw-bold mb-0">Welcome, Eric Manongdo</p>
+                    <p>Portal opened on 11/25/2024 11:00 AM</p>
+                </div>
+            </section>
+            <section class="row c-my-link">
+                <div class="col-lg-3">
+                    <div class="row g-2 c-card-container">
+                        <div class="card p-3 c-card-bg">
+                            <app-global-link></app-global-link>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-2 c-card-container-half">
+                        <div class="card p-3 c-card-bg">
+                            <app-headline></app-headline>
+                        </div>
+                    </div>
+                    <div class="row g-2 mt-2 c-card-container-half">
+                        <div class="card p-3 c-card-bg">
+                            <app-news></app-news>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="row g-2 c-card-container">
+                        <app-my-link></app-my-link>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</ng-template>
 
 
 
